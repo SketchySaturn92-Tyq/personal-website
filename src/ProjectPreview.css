@@ -1,0 +1,117 @@
+.project-preview {
+  position: fixed;
+  z-index: 420;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(10px, 2vw, 28px);
+}
+
+.project-preview__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 14% 90%, rgba(200, 255, 69, 0.09), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(168, 85, 247, 0.15), transparent 36%),
+    rgba(2, 4, 4, 0.92);
+  backdrop-filter: blur(18px) saturate(0.78);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.project-preview__panel {
+  position: relative;
+  z-index: 1;
+  width: min(96vw, calc(94svh * 1.42), 1600px);
+  aspect-ratio: 1.42;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: #030a13;
+  box-shadow: 0 40px 130px rgba(0, 0, 0, 0.68);
+  will-change: transform, opacity;
+}
+
+.project-preview__controls {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  will-change: transform, opacity;
+}
+
+.project-preview__controls button {
+  display: inline-flex;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  background: rgba(3, 7, 11, 0.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.project-preview__controls button {
+  width: 42px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.project-preview__controls button:hover {
+  color: #070808;
+  border-color: var(--acid);
+  background: var(--acid);
+  transform: translateY(-2px);
+}
+
+.project-preview__canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  margin: 0;
+  background: #030a13;
+  will-change: transform, opacity;
+}
+
+.project-preview__canvas img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .project-preview {
+    padding: 6px;
+  }
+
+  .project-preview__panel {
+    width: min(98vw, calc(96svh * 1.42));
+    border-radius: 10px;
+  }
+
+  .project-preview__controls {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+
+  .project-preview__controls button {
+    height: 36px;
+  }
+
+  .project-preview__controls button {
+    width: 36px;
+  }
+}

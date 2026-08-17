@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1160" viewBox="0 0 1600 1160" role="img" aria-labelledby="title desc">
+  <title id="title">房源 RAG 建库与检索问答流程图</title>
+  <desc id="desc">展示房源数据通过 Embedding 模型进入向量数据库，并通过用户问题向量化、语义检索、拼提示词和大语言模型生成回答的流程。</desc>
+  <defs>
+    <linearGradient id="greenData" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c7a59"/>
+      <stop offset="100%" stop-color="#065940"/>
+    </linearGradient>
+    <linearGradient id="purpleModel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5746bc"/>
+      <stop offset="100%" stop-color="#3f318f"/>
+    </linearGradient>
+    <linearGradient id="blueStore" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c5a99"/>
+      <stop offset="100%" stop-color="#084777"/>
+    </linearGradient>
+    <linearGradient id="amberTask" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#965200"/>
+      <stop offset="100%" stop-color="#6c3a00"/>
+    </linearGradient>
+    <linearGradient id="grayUser" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#50504b"/>
+      <stop offset="100%" stop-color="#3c3d39"/>
+    </linearGradient>
+    <linearGradient id="redPrompt" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#a1361b"/>
+      <stop offset="100%" stop-color="#7b2817"/>
+    </linearGradient>
+    <linearGradient id="greenLLM" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#2f7414"/>
+      <stop offset="100%" stop-color="#1f5509"/>
+    </linearGradient>
+    <filter id="shadow" x="-8%" y="-16%" width="116%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#151a2d" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" markerHeight="12" markerWidth="12" orient="auto" refX="9" refY="6">
+      <path d="M1,1 L10,6 L1,11 Z" fill="#7e807b"/>
+    </marker>
+    <marker id="arrowDark" markerHeight="13" markerWidth="13" orient="auto" refX="10" refY="6.5">
+      <path d="M1,1 L11,6.5 L1,12 Z" fill="#4b4d49"/>
+    </marker>
+    <style>
+      .bg { fill: #faf9f5; }
+      .title { fill: #182033; font: 700 40px "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+      .section-label { fill: #182033; font: 700 38px "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+      .box-title { fill: #f8fbff; font: 700 32px "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+      .box-sub { fill: #d9e6f3; font: 500 27px "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+      .muted-sub { fill: #d4d3cc; }
+      .green-sub { fill: #72d8bd; }
+      .blue-sub { fill: #b6d4f1; }
+      .amber-sub { fill: #ffc063; }
+      .red-sub { fill: #ffc0ae; }
+      .llm-sub { fill: #b3dc91; }
+      .note { fill: #686964; font: 500 25px "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+      .connector { fill: none; stroke: #7e807b; stroke-width: 3.2; marker-end: url(#arrow); }
+      .connector-dark { fill: none; stroke: #4b4d49; stroke-width: 3.6; marker-end: url(#arrowDark); }
+      .connector-soft { fill: none; stroke: #9b9d96; stroke-width: 3; marker-end: url(#arrow); }
+      .connector-dashed { fill: none; stroke: #83867f; stroke-width: 3.2; stroke-dasharray: 9 12; marker-end: url(#arrow); }
+      .divider { stroke: #dad8d1; stroke-width: 2.5; stroke-dasharray: 8 10; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1160"/>
+  <rect x="0" y="0" width="1600" height="1160" fill="none" stroke="#ebe8df" stroke-width="1"/>
+
+  <text class="title" x="70" y="78">第一步：建库(把房源数据变成可检索的知识)</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="118" width="415" height="128" rx="16" fill="url(#greenData)" stroke="#44c2a0" stroke-width="3"/>
+    <text class="box-title" x="277.5" y="174" text-anchor="middle">房源数据</text>
+    <text class="box-sub green-sub" x="277.5" y="215" text-anchor="middle">邮编、租金、在售房源</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="595" y="118" width="430" height="128" rx="16" fill="url(#purpleModel)" stroke="#b4a8ff" stroke-width="3"/>
+    <text class="box-title" x="810" y="174" text-anchor="middle">Embedding 模型</text>
+    <text class="box-sub" x="810" y="215" text-anchor="middle">把文字转成向量</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1135" y="118" width="395" height="128" rx="16" fill="url(#blueStore)" stroke="#8dc7f2" stroke-width="3"/>
+    <text class="box-title" x="1332.5" y="174" text-anchor="middle">向量数据库</text>
+    <text class="box-sub blue-sub" x="1332.5" y="215" text-anchor="middle">pgvector</text>
+  </g>
+
+  <path class="connector-dark" d="M485 182 H577"/>
+  <path class="connector-dark" d="M1025 182 H1117"/>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="325" width="415" height="128" rx="16" fill="url(#amberTask)" stroke="#ffa31f" stroke-width="3"/>
+    <text class="box-title" x="277.5" y="381" text-anchor="middle">定时任务</text>
+    <text class="box-sub amber-sub" x="277.5" y="422" text-anchor="middle">cron 自动更新</text>
+  </g>
+
+  <path class="connector-soft" d="M277.5 325 V285 H1322 V264"/>
+  <text class="note" x="800" y="325" text-anchor="middle">定时重跑建库流程,新房源自动入库</text>
+
+  <line class="divider" x1="70" y1="508" x2="1530" y2="508"/>
+  <path class="connector-soft" d="M800 400 V484"/>
+
+  <text class="section-label" x="70" y="587">第二步：检索问答(回答一个具体问题)</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="620" width="415" height="128" rx="16" fill="url(#grayUser)" stroke="#bfc0b8" stroke-width="3"/>
+    <text class="box-title" x="277.5" y="676" text-anchor="middle">用户提问</text>
+    <text class="box-sub muted-sub" x="277.5" y="717" text-anchor="middle">“SW1 两居室多少钱?”</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="595" y="620" width="430" height="128" rx="16" fill="url(#purpleModel)" stroke="#b4a8ff" stroke-width="3"/>
+    <text class="box-title" x="810" y="676" text-anchor="middle">问题向量化</text>
+    <text class="box-sub" x="810" y="717" text-anchor="middle">用同一个模型</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1135" y="620" width="395" height="128" rx="16" fill="url(#blueStore)" stroke="#8dc7f2" stroke-width="3"/>
+    <text class="box-title" x="1332.5" y="676" text-anchor="middle">语义检索</text>
+    <text class="box-sub blue-sub" x="1332.5" y="717" text-anchor="middle">找最相关房源</text>
+  </g>
+
+  <path class="connector-dark" d="M485 684 H577"/>
+  <path class="connector-dark" d="M1025 684 H1117"/>
+  <path class="connector-dashed" d="M1332.5 620 V267"/>
+  <text class="note" x="1332.5" y="545" text-anchor="middle">在向量库中检索</text>
+
+  <g filter="url(#shadow)">
+    <rect x="390" y="820" width="820" height="138" rx="16" fill="url(#redPrompt)" stroke="#f08f72" stroke-width="3"/>
+    <text class="box-title" x="800" y="878" text-anchor="middle">拼提示词:检索到的房源 + 问题</text>
+    <text class="box-sub red-sub" x="800" y="921" text-anchor="middle">多步提示词链:总结 → 提取 → 撰写</text>
+  </g>
+
+  <path class="connector-soft" d="M1332.5 748 V889 H1228"/>
+  <path class="connector-soft" d="M800 958 V990"/>
+
+  <g filter="url(#shadow)">
+    <rect x="390" y="1000" width="820" height="110" rx="16" fill="url(#greenLLM)" stroke="#91ca61" stroke-width="3"/>
+    <text class="box-title" x="800" y="1046" text-anchor="middle">大语言模型</text>
+    <text class="box-sub llm-sub" x="800" y="1087" text-anchor="middle">本地部署(vLLM)或调用 API,生成最终回答</text>
+  </g>
+</svg>

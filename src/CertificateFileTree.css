@@ -1,0 +1,154 @@
+.certificate-tree {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: 'DM Mono', monospace;
+}
+
+.certificate-tree__group {
+  --tree-accent: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.certificate-tree__group--econ,
+.certificate-tree__group--math,
+.certificate-tree__group--coding,
+.certificate-tree__group--content {
+  --tree-accent: #c8ff45;
+}
+
+.certificate-tree__group-trigger,
+.certificate-tree__file {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.certificate-tree__group-trigger {
+  display: grid;
+  min-height: 52px;
+  grid-template-columns: 18px 20px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+  transition: color 240ms ease, padding-left 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.certificate-tree__group-trigger:hover,
+.certificate-tree__group-trigger[aria-expanded='true'] {
+  padding-left: 10px;
+  color: var(--tree-accent);
+}
+
+.certificate-tree__chevron {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.certificate-tree__group-trigger[aria-expanded='true'] .certificate-tree__chevron {
+  transform: rotate(90deg);
+}
+
+.certificate-tree__group-trigger > span {
+  overflow: hidden;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.certificate-tree__group-trigger small {
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.certificate-tree__branch {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 260ms ease;
+}
+
+.certificate-tree__branch.is-expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.certificate-tree__branch-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.certificate-tree__file {
+  position: relative;
+  display: grid;
+  min-height: 38px;
+  grid-template-columns: 15px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px 0 64px;
+  color: rgba(255, 255, 255, 0.52);
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    padding-left 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.certificate-tree__file:hover {
+  padding-left: 70px;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.08), transparent 72%);
+}
+
+.certificate-tree__connector {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 26px;
+  width: 27px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+.certificate-tree__connector::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 23px;
+  content: '';
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.certificate-tree__connector.is-last {
+  bottom: 50%;
+}
+
+.certificate-tree__file-name {
+  overflow: hidden;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.certificate-tree__file-meta {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 640px) {
+  .certificate-tree__group-trigger small { display: none; }
+  .certificate-tree__file { padding-left: 54px; }
+  .certificate-tree__file:hover { padding-left: 58px; }
+  .certificate-tree__connector { left: 20px; }
+}

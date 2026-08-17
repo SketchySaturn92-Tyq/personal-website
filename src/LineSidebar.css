@@ -1,0 +1,135 @@
+.line-sidebar {
+  --accent-color: #a855f7;
+  --text-color: #c4c4c4;
+  --marker-color: #6c6c6c;
+  --marker-length: 60px;
+  --marker-gap: 0px;
+  --tick-scale: 0.5;
+  --max-shift: 30px;
+  --item-gap: 20px;
+  --font-size: 1.1rem;
+  --smoothing: 100ms;
+
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.line-sidebar--markers {
+  padding-left: calc(var(--marker-length) + var(--marker-gap));
+}
+
+.line-sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-gap);
+  margin: 0;
+  padding: 1rem 0;
+  list-style: none;
+}
+
+.line-sidebar__item {
+  position: relative;
+}
+
+.line-sidebar__item::before {
+  content: '';
+  position: absolute;
+  inset: -6px -48px;
+  pointer-events: none;
+}
+
+.line-sidebar__button {
+  position: relative;
+  display: block;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.line-sidebar__label {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text-color);
+  font-size: var(--font-size);
+  line-height: 1.2;
+  transform: translateX(0);
+  transition:
+    color var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1),
+    opacity var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1),
+    text-shadow var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1),
+    transform var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.line-sidebar__index {
+  margin-right: 0.6rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85em;
+  opacity: 0.55;
+  transition: opacity var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.line-sidebar__marker {
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  width: var(--marker-length);
+  height: 1px;
+  background-color: var(--marker-color);
+  transform: translateY(-50%) scaleX(0.7);
+  transform-origin: left center;
+  transition:
+    background-color var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1),
+    transform var(--smoothing) cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.line-sidebar__item:hover .line-sidebar__label {
+  transform: translateX(var(--max-shift));
+}
+
+.line-sidebar__item[aria-current='true'] .line-sidebar__label {
+  color: var(--accent-color);
+  transform: translateX(var(--max-shift));
+}
+
+.line-sidebar__item:hover .line-sidebar__index {
+  opacity: 0.82;
+}
+
+.line-sidebar__item[aria-current='true'] .line-sidebar__index {
+  opacity: 1;
+}
+
+.line-sidebar__item:hover .line-sidebar__marker {
+  transform: translateY(-50%) scaleX(1.2);
+}
+
+.line-sidebar__item[aria-current='true'] .line-sidebar__marker {
+  background-color: var(--accent-color);
+  transform: translateY(-50%) scaleX(1.2);
+}
+
+.line-sidebar--markers .line-sidebar__item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + var(--item-gap) / 2);
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  width: calc(var(--marker-length) * var(--tick-scale));
+  height: 1px;
+  background-color: var(--marker-color);
+  opacity: 0.5;
+  transform: translateY(-50%);
+}
+
+.line-sidebar--scale-tick .line-sidebar__item:not(:last-child)::after {
+  transform: translateY(-50%) scaleX(0.7);
+  transform-origin: left center;
+}
