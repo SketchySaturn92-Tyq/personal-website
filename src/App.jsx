@@ -1418,6 +1418,7 @@ function App() {
         {
           animated: '(prefers-reduced-motion: no-preference)',
           reduced: '(prefers-reduced-motion: reduce)',
+          mobile: '(max-width: 900px)',
         },
         (context) => {
           if (context.conditions.reduced) {
@@ -1428,6 +1429,55 @@ function App() {
             gsap.set(shadow, { opacity: 1 })
             gsap.set(points, { autoAlpha: 1, y: 0 })
             gsap.set(copies, { autoAlpha: 1, y: 0 })
+            return
+          }
+
+          if (context.conditions.mobile) {
+            gsap.set([path, shadow], {
+              strokeDasharray: pathLength,
+              strokeDashoffset: 0,
+              opacity: 0,
+            })
+            gsap.set(points, { autoAlpha: 0, y: 12 })
+            gsap.set(copies, { autoAlpha: 0, y: 10 })
+
+            const mobileTimeline = gsap.timeline({
+              defaults: { overwrite: 'auto' },
+              scrollTrigger: {
+                trigger: map,
+                start: 'top 86%',
+                once: true,
+              },
+            })
+
+            points.forEach((point, index) => {
+              const revealAt = index * 0.16
+
+              mobileTimeline.to(
+                point,
+                {
+                  autoAlpha: 1,
+                  y: 0,
+                  duration: 0.42,
+                  ease: 'power2.out',
+                },
+                revealAt,
+              )
+
+              if (copies[index]) {
+                mobileTimeline.to(
+                  copies[index],
+                  {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'power3.out',
+                  },
+                  revealAt + 0.03,
+                )
+              }
+            })
+
             return
           }
 

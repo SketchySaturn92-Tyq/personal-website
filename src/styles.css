@@ -3675,6 +3675,302 @@ footer p {
   }
 }
 
+/* Portrait layout: turn the desktop curve and side rail into native mobile flows. */
+@media (max-width: 900px) {
+  .direction,
+  .link-index {
+    min-height: auto;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-top: 104px;
+    padding-bottom: 78px;
+  }
+
+  .direction-intro {
+    display: block;
+  }
+
+  .direction-marquee {
+    width: calc(100% + 20px);
+    height: clamp(104px, 24vw, 150px);
+    margin-left: -10px;
+  }
+
+  .direction-marquee .perspective-marquee-group {
+    gap: 24px;
+    padding-right: 24px;
+  }
+
+  .direction-marquee span {
+    font-size: clamp(44px, 12vw, 78px);
+  }
+
+  .direction-map {
+    min-height: 0;
+    margin-top: 30px;
+  }
+
+  .timeline-curve {
+    display: none;
+  }
+
+  .timeline-points {
+    position: relative;
+    inset: auto;
+    display: grid;
+    padding: 12px 0 4px 38px;
+  }
+
+  .timeline-points::before {
+    position: absolute;
+    top: 18px;
+    bottom: 24px;
+    left: 11px;
+    width: 2px;
+    content: '';
+    background: linear-gradient(180deg, #a855f7 0%, #c8ff45 62%, rgba(200, 255, 69, 0.18) 100%);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.38);
+  }
+
+  .timeline-point,
+  .timeline-point-1,
+  .timeline-point-2,
+  .timeline-point-3,
+  .timeline-point-4,
+  .timeline-point-5,
+  .timeline-point-6 {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: 126px;
+    padding: 0 0 28px;
+    transform: translateY(12px);
+  }
+
+  .timeline-point::before {
+    top: 8px;
+    left: -27px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .timeline-copy,
+  .timeline-point-1 .timeline-copy,
+  .timeline-point-2 .timeline-copy,
+  .timeline-point-3 .timeline-copy,
+  .timeline-point-4 .timeline-copy,
+  .timeline-point-5 .timeline-copy,
+  .timeline-point-6 .timeline-copy {
+    position: relative;
+    inset: auto;
+    width: min(100%, 560px);
+    text-align: left;
+    transform: translateY(10px);
+  }
+
+  .timeline-point span,
+  .timeline-point-2 span,
+  .timeline-point-5 span {
+    order: 0;
+    margin-top: 0;
+  }
+
+  .timeline-point h3 {
+    order: 1;
+    margin: 7px 0 7px;
+    font-size: clamp(19px, 4.7vw, 25px);
+    line-height: 1.08;
+  }
+
+  .timeline-point p,
+  .timeline-point-5 .timeline-copy p {
+    order: 2;
+    max-width: 36rem;
+    margin: 0;
+    font-size: clamp(11px, 2.8vw, 13px);
+    line-height: 1.5;
+  }
+
+  .timeline-point-empty {
+    min-height: 62px;
+  }
+
+  .timeline-point-empty .timeline-copy {
+    width: 100%;
+  }
+
+  .link-index-heading {
+    top: 0;
+    margin-bottom: 28px;
+  }
+
+  .link-console {
+    width: 100%;
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 34px;
+    margin: 0;
+  }
+
+  .link-sidebar-panel {
+    width: 100%;
+    min-height: 0;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .link-sidebar {
+    width: 100%;
+    max-width: none;
+  }
+
+  .link-sidebar .line-sidebar__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .link-sidebar .line-sidebar__item,
+  .link-sidebar .line-sidebar__item:last-child {
+    min-width: 0;
+    min-height: 68px;
+  }
+
+  .link-sidebar .line-sidebar__item::before {
+    top: 0;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    transform: translateX(-50%);
+  }
+
+  .link-sidebar .line-sidebar__item--current::before {
+    transform: translateX(-50%) scale(1.08);
+  }
+
+  .link-sidebar .line-sidebar__item:not(:last-child)::after,
+  .link-sidebar
+    .line-sidebar__item:has(+ .line-sidebar__item--current):not(:last-child)::after,
+  .link-sidebar .line-sidebar__item.line-sidebar__item--current:not(:last-child)::after {
+    top: 13px;
+    left: calc(50% + 19px);
+    width: calc(100% - 38px);
+    height: 2px;
+    transform: none;
+  }
+
+  .link-sidebar
+    .line-sidebar__item.line-sidebar__item--current:not(:last-child)::after {
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.92), rgba(168, 85, 247, 0.08));
+  }
+
+  .link-sidebar
+    .line-sidebar__item:has(+ .line-sidebar__item--current):not(:last-child)::after {
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.08), rgba(168, 85, 247, 0.92));
+  }
+
+  .link-sidebar .line-sidebar__button {
+    min-height: 68px;
+    padding: 40px 4px 0;
+    text-align: center;
+  }
+
+  .link-sidebar .line-sidebar__label,
+  .link-sidebar .line-sidebar__item:hover .line-sidebar__label,
+  .link-sidebar .line-sidebar__item[aria-current='true'] .line-sidebar__label {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(12px, 3.1vw, 17px);
+    line-height: 1.25;
+    text-align: center;
+    transform: none;
+  }
+
+  .link-sidebar .line-sidebar__index {
+    margin-right: 0.35rem;
+  }
+
+  .link-sidebar .line-sidebar__marker {
+    display: none;
+  }
+
+  .link-display,
+  .link-display--certificates {
+    width: 100%;
+    min-height: 310px;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .link-display-heading {
+    min-height: 0;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .direction,
+  .link-index {
+    padding-top: 92px;
+    padding-bottom: 64px;
+  }
+
+  .direction-marquee {
+    height: 100px;
+  }
+
+  .timeline-points {
+    padding-left: 34px;
+  }
+
+  .timeline-points::before {
+    left: 9px;
+  }
+
+  .timeline-point::before {
+    left: -25px;
+  }
+
+  .timeline-point,
+  .timeline-point-1,
+  .timeline-point-2,
+  .timeline-point-3,
+  .timeline-point-4,
+  .timeline-point-5,
+  .timeline-point-6 {
+    min-height: 118px;
+  }
+
+  .link-console {
+    gap: 28px;
+  }
+
+  .link-sidebar .line-sidebar__button {
+    padding-right: 1px;
+    padding-left: 1px;
+  }
+
+  .link-sidebar .line-sidebar__label {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .link-sidebar .line-sidebar__index {
+    margin-right: 0;
+    font-size: 9px;
+  }
+
+  .link-display,
+  .link-display--certificates {
+    min-height: 280px;
+    padding: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

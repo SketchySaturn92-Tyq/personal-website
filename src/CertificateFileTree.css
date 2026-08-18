@@ -147,8 +147,59 @@
 }
 
 @media (max-width: 640px) {
-  .certificate-tree__group-trigger small { display: none; }
-  .certificate-tree__file { padding-left: 54px; }
-  .certificate-tree__file:hover { padding-left: 58px; }
-  .certificate-tree__connector { left: 20px; }
+  .certificate-tree__group-trigger {
+    min-height: 54px;
+    grid-template-columns: 15px 18px minmax(0, 1fr);
+    gap: 8px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .certificate-tree__group-trigger:hover,
+  .certificate-tree__group-trigger[aria-expanded='true'] {
+    padding-left: 4px;
+  }
+
+  .certificate-tree__group-trigger > span {
+    font-size: 10px;
+    line-height: 1.35;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .certificate-tree__group-trigger small {
+    display: none;
+  }
+
+  .certificate-tree__file {
+    min-height: 46px;
+    grid-template-columns: 14px minmax(0, 1fr);
+    gap: 8px;
+    padding-right: 0;
+    padding-left: 44px;
+  }
+
+  .certificate-tree__file:hover {
+    padding-left: 48px;
+  }
+
+  .certificate-tree__connector {
+    left: 17px;
+    width: 20px;
+  }
+
+  .certificate-tree__connector::after {
+    width: 17px;
+  }
+
+  .certificate-tree__file-name {
+    font-size: 9px;
+    line-height: 1.45;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .certificate-tree__file-meta {
+    display: none;
+  }
 }
