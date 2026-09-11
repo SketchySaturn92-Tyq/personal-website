@@ -827,6 +827,10 @@ button {
   color: #a855f7;
 }
 
+.direction-marquee span[data-marquee-index='0'] {
+  color: rgba(255, 255, 255, 0.88);
+}
+
 .direction-marquee {
   margin: 0;
 }

@@ -68,8 +68,8 @@ function PerspectiveMarquee({
               key={`group-${groupIndex}`}
               ref={groupIndex === 0 ? groupRef : null}
             >
-              {group.map((item) => (
-                <span key={`${item}-${groupIndex}`}>{item}</span>
+              {group.map((item, itemIndex) => (
+                <span data-marquee-index={itemIndex} key={`${item}-${groupIndex}`}>{item}</span>
               ))}
             </div>
           ))}
