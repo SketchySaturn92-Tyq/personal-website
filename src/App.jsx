@@ -591,7 +591,7 @@ const copyByLanguage = {
     direction: {
       number: '02',
       label: '方向',
-      marquee: ['软件', 'AI', '研究', '设计'],
+      marquee: ['软件', 'AI', '研究', '运营'],
       timelineAria: 'AI 与编程时间线',
       milestonesAria: '时间线节点',
       timeline: [
