@@ -1,0 +1,401 @@
+.galactic-stage {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  background: #04060d;
+  z-index: 10;
+  transition: opacity 420ms ease;
+}
+
+.galactic-stage.is-warping {
+  opacity: 0.92;
+}
+
+.galactic-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.galactic-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Projected 3D Spatial Planet Beacons */
+.galactic-telemetry-ribbon {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 201, 155, 0.22);
+  background: rgba(6, 10, 19, 0.66);
+  backdrop-filter: blur(12px);
+  color: rgba(244, 241, 234, 0.78);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.galactic-telemetry-ribbon strong {
+  color: var(--champagne);
+  font-weight: 500;
+}
+
+.galactic-telemetry-ribbon__sep {
+  opacity: 0.35;
+}
+
+@media (max-width: 900px) {
+  .galactic-telemetry-ribbon {
+    display: none;
+  }
+}
+
+.galactic-beacons-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.spatial-planet-beacon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 9px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(244, 241, 234, 0.2);
+  background: rgba(8, 11, 20, 0.72);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+  will-change: transform, opacity;
+}
+
+.spatial-planet-beacon:hover,
+.spatial-planet-beacon.is-near {
+  border-color: var(--planet-accent, var(--champagne));
+  background: rgba(12, 17, 30, 0.9);
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.65),
+    0 0 24px color-mix(in srgb, var(--planet-accent, #e5c99b) 35%, transparent);
+}
+
+.spatial-planet-beacon__code {
+  color: var(--planet-accent, var(--champagne));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.spatial-planet-beacon strong {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.spatial-planet-beacon__enter {
+  margin-top: 2px;
+  color: rgba(244, 241, 234, 0.62);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+}
+
+/* Compact Lower-Left Departure Plaque at Gate (t < 0.085) */
+.galactic-prologue-plaque {
+  position: absolute;
+  left: clamp(24px, 4vw, 56px);
+  bottom: 94px;
+  z-index: 4;
+  max-width: 520px;
+  padding: 24px 28px;
+  border-radius: 26px;
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  background: rgba(7, 10, 18, 0.68);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+  animation: plaqueAppear 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes plaqueAppear {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.galactic-prologue-plaque__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  color: var(--champagne);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+.galactic-prologue-plaque__id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(244, 241, 234, 0.78);
+}
+
+.galactic-prologue-plaque__id i {
+  font-style: normal;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(244, 241, 234, 0.16);
+  font-family: var(--font-serif);
+  letter-spacing: 0.1em;
+}
+
+.galactic-prologue-plaque h1 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.galactic-prologue-plaque h1 span {
+  display: block;
+  color: var(--ink);
+}
+
+.galactic-prologue-plaque h1 em {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  background: linear-gradient(92deg, var(--champagne-soft), var(--ice));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.galactic-prologue-plaque p {
+  margin: 0 0 18px;
+  color: rgba(244, 241, 234, 0.72);
+  font-size: 13.5px;
+  line-height: 1.62;
+}
+
+.galactic-prologue-plaque__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Orbital Approach Docking Banner */
+.galactic-dock-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 94px;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(calc(100% - 48px), 680px);
+  padding: 18px 24px;
+  border-radius: 24px;
+  border: 1px solid var(--planet-accent, var(--champagne));
+  background: rgba(8, 12, 22, 0.84);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.62),
+    0 0 36px color-mix(in srgb, var(--planet-accent, #e5c99b) 24%, transparent);
+  animation: dockPop 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dockPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 14px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.galactic-dock-prompt__code {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--planet-accent, var(--champagne));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.galactic-dock-prompt__info h2 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.galactic-dock-prompt__info p {
+  margin: 0;
+  color: rgba(244, 241, 234, 0.68);
+  font-size: 13px;
+}
+
+/* Bottom Galactic Star-Route Dock */
+.galactic-route-dock {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(calc(100% - 40px), 1360px);
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.13);
+  background: rgba(8, 11, 19, 0.78);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.galactic-route-dock__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(244, 241, 234, 0.56);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.galactic-route-dock__nodes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.galactic-route-dock__nodes::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1260px) {
+  .galactic-route-dock__hint {
+    display: none;
+  }
+}
+
+.route-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(244, 241, 234, 0.68);
+  font-size: 12px;
+  white-space: nowrap;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.route-node small {
+  color: rgba(244, 241, 234, 0.46);
+  font-size: 11px;
+}
+
+.route-node__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--node-color, var(--champagne));
+}
+
+.route-node:hover,
+.route-node.is-active {
+  border-color: rgba(229, 201, 155, 0.35);
+  background: rgba(229, 201, 155, 0.12);
+  color: var(--ink);
+}
+
+.galactic-route-dock__steppers {
+  display: flex;
+  gap: 6px;
+}
+
+.route-step-btn {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 241, 234, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink);
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.route-step-btn:hover {
+  border-color: var(--champagne);
+  color: var(--champagne);
+}
+
+@media (max-width: 1060px) {
+  .galactic-route-dock__hint {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .galactic-dock-prompt {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .galactic-prologue-plaque {
+    left: 16px;
+    right: 16px;
+    bottom: 84px;
+    padding: 18px 20px;
+  }
+}

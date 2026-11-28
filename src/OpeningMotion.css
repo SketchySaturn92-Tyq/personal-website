@@ -1,0 +1,149 @@
+/* ==========================================================================
+   OPENMOTION 3D ATELIER OPENING SCREEN — "SketchySaturn92"
+   Elevated 3D Gallery Floor + Soft-Clay Visitors + Diagonal Skylights
+   Harmonized with Obsidian × Titanium Velvet × Champagne Gold × Celestial Ice
+   ========================================================================== */
+
+.om-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 520;
+  overflow: hidden;
+  background-color: #07080d;
+  pointer-events: auto;
+  user-select: none;
+  contain: layout style paint;
+  will-change: opacity, -webkit-mask-image, mask-image;
+}
+
+.om-stage.is-passthrough {
+  pointer-events: none;
+}
+
+.om-webgl-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.om-webgl-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Subtle atmospheric Aurora + Obsidian gallery edge vignette */
+.om-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 86% 80% at 50% 48%, transparent 46%, rgba(7, 8, 13, 0.56) 84%, rgba(7, 8, 13, 0.92) 100%),
+    linear-gradient(180deg, rgba(138, 180, 248, 0.045) 0%, transparent 28%, transparent 76%, rgba(7, 8, 13, 0.72) 100%);
+}
+
+/* Luminous Champagne-Ice Iris Halo when diving through SketchySaturn92 into Hero */
+.om-iris-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, transform;
+  background: radial-gradient(
+    ellipse 36% 30% at 50% 52%,
+    rgba(229, 201, 155, 0.28) 0%,
+    rgba(138, 180, 248, 0.18) 48%,
+    transparent 76%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Minimal Cinema Progress Bar & Skip Control at Bottom Edge */
+.om-hud {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 3vh, 30px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(calc(100% - 48px), 1360px);
+  transform: translate3d(-50%, 0, 0);
+  z-index: 4;
+  will-change: opacity;
+}
+
+.om-hud__timeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  max-width: 320px;
+}
+
+.om-hud__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--champagne);
+  box-shadow: 0 0 12px rgba(229, 201, 155, 0.9);
+  flex-shrink: 0;
+}
+
+.om-hud__track {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.16);
+  overflow: hidden;
+}
+
+.om-hud__fill {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--champagne), var(--ice));
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.om-hud__code {
+  color: rgba(244, 241, 234, 0.56);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.om-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 201, 155, 0.24);
+  background: rgba(12, 15, 24, 0.62);
+  backdrop-filter: blur(12px);
+  color: rgba(244, 241, 234, 0.84);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+.om-skip:hover {
+  border-color: var(--champagne);
+  background: rgba(229, 201, 155, 0.16);
+  color: var(--champagne);
+  transform: translateY(-1px);
+}

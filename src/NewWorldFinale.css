@@ -1,0 +1,139 @@
+.newworld-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100svh;
+  padding: 84px clamp(20px, 4vw, 56px) 28px;
+  overflow: hidden;
+  background: #04060d;
+}
+
+.newworld-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.newworld-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.newworld-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 50%, #fffdf7 0%, #bceeff 48%, rgba(7, 20, 34, 0) 100%);
+}
+
+.newworld-topbar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100%, 1360px);
+  margin: 0 auto;
+}
+
+.newworld-status {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(136, 229, 216, 0.3);
+  background: rgba(7, 18, 30, 0.65);
+  backdrop-filter: blur(12px);
+  color: #b8f5ea;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+}
+
+.newworld-epilogue {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: min(100%, 860px);
+  margin: auto;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: normal;
+  transition: opacity 950ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newworld-epilogue.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.newworld-quote {
+  margin: 0;
+  color: var(--champagne-soft);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 21px);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
+}
+
+.newworld-handwriting-box {
+  width: min(100%, 680px);
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  mix-blend-mode: screen;
+}
+
+.newworld-handwriting-video {
+  display: block;
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: brightness(1.18) contrast(1.35);
+}
+
+.newworld-comms-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.newworld-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.16);
+  background: rgba(7, 15, 26, 0.72);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
+  font-size: 13px;
+  transition: border-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.newworld-chip small {
+  color: #9eece0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.newworld-chip:hover {
+  border-color: var(--champagne);
+  color: var(--champagne);
+  transform: translateY(-2px);
+}

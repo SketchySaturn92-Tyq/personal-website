@@ -1,0 +1,231 @@
+.odyssey-atlas {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(310px, 0.85fr);
+  gap: clamp(24px, 3vw, 40px);
+  align-items: stretch;
+}
+
+.odyssey-map-stage {
+  position: relative;
+  min-height: 450px;
+  border-radius: 28px;
+  border: 1px solid rgba(229, 201, 155, 0.18);
+  background:
+    radial-gradient(ellipse 75% 65% at 52% 48%, rgba(28, 36, 58, 0.72) 0%, rgba(11, 14, 22, 0.95) 75%, #07080d 100%);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.odyssey-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.odyssey-map-hud-top {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  right: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.odyssey-compass,
+.odyssey-lat {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.11);
+  background: rgba(9, 11, 18, 0.62);
+  backdrop-filter: blur(8px);
+  color: rgba(244, 241, 234, 0.66);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+.odyssey-compass {
+  color: var(--champagne);
+}
+
+.odyssey-map-hud-bottom {
+  position: absolute;
+  bottom: 16px;
+  left: 22px;
+  pointer-events: none;
+  z-index: 2;
+  color: rgba(244, 241, 234, 0.44);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+}
+
+/* Clickable ◇ Diamond Constellation Beacons */
+.odyssey-beacon {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  z-index: 3;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.odyssey-beacon:hover {
+  transform: translate(-50%, -50%) scale(1.14);
+}
+
+.odyssey-beacon__ring {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(244, 241, 234, 0.34);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.odyssey-beacon.is-active .odyssey-beacon__ring {
+  border-style: solid;
+  border-color: var(--beacon-accent, var(--champagne));
+  transform: scale(1.26);
+  box-shadow:
+    0 0 22px var(--beacon-accent, var(--champagne)),
+    inset 0 0 12px rgba(229, 201, 155, 0.25);
+}
+
+.odyssey-beacon__year {
+  margin-top: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.12);
+  background: rgba(9, 11, 18, 0.78);
+  color: rgba(244, 241, 234, 0.72);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.odyssey-beacon.is-active .odyssey-beacon__year {
+  border-color: var(--beacon-accent, var(--champagne));
+  color: var(--ink);
+}
+
+/* Field Journal Card */
+.odyssey-journal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(26px, 3vw, 36px);
+  border-radius: 28px;
+  border: 1px solid rgba(244, 241, 234, 0.12);
+  background: linear-gradient(160deg, rgba(20, 24, 36, 0.88) 0%, rgba(10, 12, 19, 0.96) 100%);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.42);
+  animation: journalFade 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes journalFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.odyssey-journal__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.odyssey-journal__step {
+  color: var(--champagne);
+}
+
+.odyssey-journal__year {
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 201, 155, 0.25);
+  background: rgba(229, 201, 155, 0.08);
+  color: var(--champagne-soft);
+}
+
+.odyssey-journal__place {
+  margin: 0 0 8px;
+  color: var(--ice);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+}
+
+.odyssey-journal__title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.3vw, 31px);
+  font-weight: 400;
+  line-height: 1.24;
+  color: var(--ink);
+}
+
+.odyssey-journal__body {
+  margin: 0 0 20px;
+  color: rgba(244, 241, 234, 0.74);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+
+.odyssey-journal__artifact {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 14px;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(229, 201, 155, 0.18);
+  background: rgba(229, 201, 155, 0.06);
+  color: var(--champagne-soft);
+  font-size: 12.5px;
+}
+
+.odyssey-journal__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+@media (max-width: 980px) {
+  .odyssey-atlas {
+    grid-template-columns: 1fr;
+  }
+
+  .odyssey-map-stage {
+    min-height: 360px;
+  }
+}

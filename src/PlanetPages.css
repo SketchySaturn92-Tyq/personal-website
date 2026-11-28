@@ -1,0 +1,711 @@
+/* ==========================================================================
+   STANDALONE PLANET PAGES — 5 DISTINCT ARCHITECTURAL ATMOSPHERES
+   Non-scrolling (desktop 100svh) standalone destination rooms!
+   ========================================================================== */
+
+.planet-page {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100svh;
+  padding: 84px clamp(20px, 4vw, 56px) 26px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: planetArrive 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes planetArrive {
+  from {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 5 Distinct Planetary Color Worlds */
+.planet-page--mars {
+  --p-accent: #eb7a52;
+  --p-soft: #f6c4a8;
+  background:
+    radial-gradient(circle at 86% 92%, rgba(212, 92, 52, 0.32) 0%, rgba(120, 42, 24, 0.14) 38%, transparent 66%),
+    linear-gradient(155deg, #160b09 0%, #0b090e 65%, #07080d 100%);
+}
+
+.planet-page--jupiter {
+  --p-accent: #e5b976;
+  --p-soft: #f6e1bc;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 105%, rgba(216, 154, 84, 0.28) 0%, rgba(112, 74, 36, 0.12) 45%, transparent 72%),
+    linear-gradient(170deg, #120f0a 0%, #090b12 72%);
+}
+
+.planet-page--saturn {
+  --p-accent: #8ab4f8;
+  --p-soft: #f5dfb8;
+  background:
+    radial-gradient(ellipse 80% 45% at 80% 12%, rgba(229, 201, 155, 0.18) 0%, transparent 58%),
+    radial-gradient(circle at 15% 85%, rgba(138, 180, 248, 0.16) 0%, transparent 52%),
+    linear-gradient(160deg, #070c18 0%, #090d19 60%, #05070e 100%);
+}
+
+.planet-page--pluto {
+  --p-accent: #7ce0ff;
+  --p-soft: #c4b5fd;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(124, 224, 255, 0.16) 0%, transparent 48%),
+    radial-gradient(circle at 85% 82%, rgba(167, 139, 250, 0.16) 0%, transparent 50%),
+    linear-gradient(155deg, #040a14 0%, #070e1c 65%, #05070e 100%);
+}
+
+.planet-page--pulsar {
+  --p-accent: #c4b5fd;
+  --p-soft: #f5dfb8;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(196, 181, 253, 0.16) 0%, rgba(229, 201, 155, 0.08) 38%, transparent 68%),
+    #04050a;
+}
+
+.planet-page__grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(244, 241, 234, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 241, 234, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 50%, #000 25%, transparent 85%);
+}
+
+/* Planetary Top Navigation Bar */
+.planet-topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100%, 1380px);
+  margin: 0 auto 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.1);
+}
+
+.planet-back-btn,
+.planet-next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.18);
+  background: rgba(12, 16, 26, 0.68);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  transition: border-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.planet-back-btn:hover,
+.planet-next-btn:hover {
+  border-color: var(--p-accent);
+  color: var(--p-accent);
+  transform: translateY(-1px);
+}
+
+.planet-quick-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.1);
+  background: rgba(8, 11, 18, 0.65);
+}
+
+.planet-quick-tabs button {
+  padding: 6px 13px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(244, 241, 234, 0.62);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.planet-quick-tabs button.is-active {
+  background: var(--p-accent);
+  color: #06080f;
+  font-weight: 600;
+}
+
+.planet-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  width: min(100%, 1380px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.planet-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--p-accent);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.planet-h1 {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 400;
+  line-height: 1.14;
+  color: var(--ink);
+}
+
+.planet-lead {
+  margin: 0 0 22px;
+  max-width: 68ch;
+  color: rgba(244, 241, 234, 0.74);
+  font-size: 14.5px;
+  line-height: 1.68;
+}
+
+/* ==========================================================================
+   01 · MARS LAYOUT (SPLIT COMMAND DECK)
+   ========================================================================== */
+.mars-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 350px) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: center;
+}
+
+.mars-dossier {
+  background: linear-gradient(155deg, rgba(44, 22, 18, 0.96) 0%, rgba(16, 12, 16, 0.98) 100%) !important;
+  border: 1px solid rgba(235, 122, 82, 0.34);
+}
+
+.mars-pillars-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mars-pillar-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(244, 241, 234, 0.11);
+  background: rgba(18, 13, 15, 0.68);
+  text-align: left;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.mars-pillar-tab small {
+  color: var(--p-accent);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+}
+
+.mars-pillar-tab strong {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.mars-pillar-tab.is-active {
+  border-color: var(--p-accent);
+  background: rgba(235, 122, 82, 0.15);
+}
+
+.mars-pillar-detail {
+  padding: 20px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(235, 122, 82, 0.28);
+  background: rgba(24, 15, 16, 0.82);
+}
+
+.mars-pillar-detail__head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: var(--p-accent);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+}
+
+.mars-pillar-detail h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.mars-pillar-detail p {
+  margin: 0;
+  color: rgba(244, 241, 234, 0.76);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   02 · JUPITER LAYOUT (HORIZONTAL CHRONO-ASTROLABE)
+   ========================================================================== */
+.jupiter-layout {
+  max-width: 1080px;
+}
+
+.jupiter-dial-rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0 26px;
+  padding: 12px 0;
+}
+
+.jupiter-dial-line {
+  position: absolute;
+  top: 24px;
+  left: 6%;
+  right: 6%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(229, 185, 118, 0.45), transparent);
+}
+
+.jupiter-epoch-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: rgba(244, 241, 234, 0.56);
+}
+
+.jupiter-epoch-node__orb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(229, 185, 118, 0.45);
+  background: #120f0a;
+  transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.jupiter-epoch-node.is-active .jupiter-epoch-node__orb {
+  background: var(--p-accent);
+  transform: scale(1.22);
+  box-shadow: 0 0 22px rgba(229, 185, 118, 0.75);
+}
+
+.jupiter-epoch-node strong {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink);
+}
+
+.jupiter-epoch-node small {
+  font-size: 11px;
+}
+
+.jupiter-epoch-stage {
+  padding: clamp(26px, 3vw, 38px);
+  border-radius: 28px;
+  border: 1px solid rgba(229, 185, 118, 0.28);
+  background: linear-gradient(160deg, rgba(28, 22, 14, 0.88), rgba(12, 11, 14, 0.94));
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+}
+
+.jupiter-epoch-stage__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--p-accent);
+}
+
+.jupiter-epoch-stage h2 {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.jupiter-epoch-stage p {
+  margin: 0 0 22px;
+  color: rgba(244, 241, 234, 0.78);
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.jupiter-epoch-stage__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.jupiter-artifact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 185, 118, 0.25);
+  background: rgba(229, 185, 118, 0.08);
+  color: var(--p-soft);
+  font-size: 12.5px;
+}
+
+.jupiter-nav-btns {
+  display: flex;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   03 · SATURN LAYOUT (TWO-WING ROYAL ARCHIVE)
+   ========================================================================== */
+.saturn-head-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.saturn-wing-switcher {
+  display: inline-flex;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(138, 180, 248, 0.25);
+  background: rgba(9, 14, 26, 0.78);
+}
+
+.saturn-wing-switcher button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(244, 241, 234, 0.7);
+  font-size: 13px;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.saturn-wing-switcher button.is-active {
+  background: var(--p-soft);
+  color: #070912;
+  font-weight: 600;
+}
+
+.saturn-papers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.saturn-honours-wing {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.saturn-medals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.saturn-medal-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(138, 180, 248, 0.16);
+  background: rgba(11, 17, 30, 0.82);
+  text-align: left;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.saturn-medal-card:hover {
+  border-color: var(--p-soft);
+  transform: translateY(-2px);
+}
+
+.saturn-medal-card__thumb {
+  position: relative;
+  width: 82px;
+  height: 58px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #05070c;
+}
+
+.saturn-medal-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.saturn-medal-card__eye {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(7, 10, 18, 0.85);
+  color: var(--p-soft);
+}
+
+.saturn-medal-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.saturn-medal-card__info strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.saturn-medal-card__info small {
+  font-size: 11px;
+  color: rgba(244, 241, 234, 0.56);
+}
+
+/* ==========================================================================
+   04 · PLUTO LAYOUT (HOLOGRAPHIC 3-SLOT AI WORKBENCH)
+   ========================================================================== */
+.pluto-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 44px);
+  align-items: center;
+}
+
+.pluto-rail__title {
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.pluto-slot-list {
+  display: grid;
+  gap: 10px;
+}
+
+.pluto-slot-btn {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(124, 224, 255, 0.18);
+  background: rgba(8, 16, 30, 0.72);
+  color: rgba(244, 241, 234, 0.78);
+  font-size: 13.5px;
+  text-align: left;
+  transition: border-color 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.pluto-slot-btn.is-active {
+  border-color: var(--p-accent);
+  background: rgba(124, 224, 255, 0.14);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.pluto-stage {
+  padding: clamp(24px, 2.8vw, 34px);
+  border-radius: 28px;
+  border: 1px solid rgba(124, 224, 255, 0.24);
+  background: rgba(8, 15, 28, 0.86);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+}
+
+.pluto-app-panel__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.pluto-app-panel__top .work-actions {
+  margin-top: 0;
+}
+
+.pluto-app-lead {
+  margin: 0 0 18px;
+  color: rgba(244, 241, 234, 0.76);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.pluto-ai-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--p-accent);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+}
+
+.pluto-ai-panel h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 400;
+}
+
+.pluto-ai-panel p {
+  margin: 16px 0;
+  color: rgba(244, 241, 234, 0.78);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.pluto-holo-diagram {
+  padding: 12px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(124, 224, 255, 0.16);
+  background: rgba(4, 9, 18, 0.85);
+}
+
+.pluto-holo-svg {
+  display: block;
+  width: 100%;
+  max-height: 170px;
+}
+
+/* ==========================================================================
+   05 · PULSAR LAYOUT (HANDWRITTEN SIGN-OFF & FREQUENCIES)
+   ========================================================================== */
+.pulsar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+
+.pulsar-quote {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--p-soft);
+}
+
+.pulsar-manuscript-frame {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(244, 241, 234, 0.1);
+}
+
+.pulsar-manuscript-video {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+}
+
+.pulsar-links {
+  display: grid;
+  gap: 12px;
+}
+
+.pulsar-link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  background: rgba(14, 16, 26, 0.78);
+  color: var(--ink);
+  text-align: left;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.pulsar-link-card div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pulsar-link-card strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pulsar-link-card small {
+  color: rgba(244, 241, 234, 0.56);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+}
+
+.pulsar-link-card:hover {
+  border-color: var(--p-soft);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .mars-layout,
+  .saturn-papers-grid,
+  .pluto-layout,
+  .pulsar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .saturn-medals-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .planet-quick-tabs {
+    display: none;
+  }
+}
